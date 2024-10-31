@@ -1,0 +1,17 @@
+msgid "Title"
+msgstr "Название"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Add book"
+msgstr "Добавить книгу"
+
+msgid "Valid title is required."
+msgstr "Название обязательно."
+
+msgid "Valid author is required."
+msgstr "Автор обязателен."
+
+msgid "Library is empty"
+msgstr "Библиотека пуста"

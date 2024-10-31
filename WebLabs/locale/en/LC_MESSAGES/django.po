@@ -1,0 +1,17 @@
+msgid "Title"
+msgstr "Title"
+
+msgid "Author"
+msgstr "Author"
+
+msgid "Add book"
+msgstr "Add book"
+
+msgid "Valid title is required."
+msgstr "Valid title is required."
+
+msgid "Valid author is required."
+msgstr "Valid author is required."
+
+msgid "Library is empty"
+msgstr "Library is empty"
