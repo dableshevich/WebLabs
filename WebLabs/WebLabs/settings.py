@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'WebLabs.urls'
@@ -108,17 +109,21 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'ru'  # язык сайта по умолчанию
 
-USE_I18N = True
+LANGUAGES = (
+    ('ru', 'Russian'),
+    ('en', 'English'),
+)
 
-LOCALE_PATH = [
-    BASE_DIR / 'locale'
-]
+USE_I18N = True  # активация системы перевода django
 
-USE_TZ = True
+# месторасположение файлов перевода
+LOCALE_PATHS = (
+    'locale',
+    # os.path.join(PROJECT_DIR, 'locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)

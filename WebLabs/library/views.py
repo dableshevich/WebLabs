@@ -7,7 +7,9 @@ from .models import LibraryBooks
 
 # Create your views here.
 def books_list(request):
-    user_language = request.session.get(translation.LANGUAGE_SESSION_KEY, 'ru')
+    user_language = request.GET.get('lang')
+    if user_language not in ('ru', 'en'):
+        user_language = request.session.get('django_language', 'ru')
     translation.activate(user_language)
 
     author = request.GET.get('author')
