@@ -1,0 +1,39 @@
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'homepage' %}" class="nav-link px-2 link-secondary">Home</a></li>
+          <li><a href="{% url 'set-info' %}" class="nav-link px-2 link-body-emphasis">Users</a></li>
+        </ul>
+
+        {% if user.is_authenticated %}
+        <div class="dropdown text-end">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <ul class="dropdown-menu text-small" style="">
+              <li><a class="dropdown-item" href="#">New book...</a></li>
+              <li><a class="dropdown-item" href="#">My books</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">Sign out</button>
+              </form>
+            </ul>
+          </div>
+
+        {% else %}
+        <div class="text-end">
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+            </a>
+            <a href="{% url 'register' %}">
+                <button type="button" class="btn btn-warning">Sign-up</button>
+            </a>
+        </div>
+
+        
+        {% endif %}
+      </div>
+    </div>
+</header>
