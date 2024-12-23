@@ -1,9 +1,11 @@
+{% load i18n %}
+
 <header class="p-3 mb-3 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="{% url 'homepage' %}" class="nav-link px-2 {% if request.path == '/' %}link-secondary{% else %} link-body-emphasis{% endif %}">Home</a></li>
-          <li><a href="{% url 'set-info' %}" class="nav-link px-2 {% if request.path == '/color/set-info' %}link-secondary{% else %} link-body-emphasis{% endif %}">Users</a></li>
+          <li><a href="{% url 'homepage' %}" class="nav-link px-2 {% if request.path == '/' %}link-secondary{% else %} link-body-emphasis{% endif %}">{% trans "Home" %}</a></li>
+          <li><a href="{% url 'set-info' %}" class="nav-link px-2 {% if request.path == '/color/set-info' %}link-secondary{% else %} link-body-emphasis{% endif %}">{% trans "Users" %}</a></li>
         </ul>
 
         {% if user.is_authenticated %}
@@ -12,12 +14,12 @@
               {{ user.username }}
             </a>
             <ul class="dropdown-menu text-small" style="">
-              <li><a class="dropdown-item" href="{% url 'add-book' %}">New book...</a></li>
-              <li><a class="dropdown-item" href="{% url 'get-user-books' user.id %}">My books</a></li>
+              <li><a class="dropdown-item" href="{% url 'add-book' %}">{% trans "New book" %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'get-user-books' user.id %}">{% trans "My books" %}</a></li>
               <li><hr class="dropdown-divider"></li>
               <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit" class="dropdown-item">Sign out</button>
+                <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
               </form>
             </ul>
           </div>
@@ -25,10 +27,10 @@
         {% else %}
         <div class="text-end">
             <a href="{% url 'login' %}">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-outline-light me-2">{% trans "Login" %}</button>
             </a>
             <a href="{% url 'register' %}">
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                <button type="button" class="btn btn-warning">{% trans "Sign-up" %}</button>
             </a>
         </div>
 

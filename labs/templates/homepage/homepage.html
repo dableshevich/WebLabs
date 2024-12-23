@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}
 
+{% load i18n %}
+
+{% block title %}
+    {% trans "Home" %}
 {% endblock title %}
 
 {% block content %}
 <select id="user-filter" style="margin-bottom: 16px">
-    <option value="">All users</option>
+    <option value="">{% trans "All users" %}</option>
     {% for user in users %}
         <option value="{{ user.id }}">{{ user.username }}</option>
     {% endfor %}
@@ -18,13 +21,13 @@
             <div class="card-body" style="width: 20rem">
                 <h1 class="card-title pricing-card-title">{{ book.title }}</h1>
                 <ul class="list-unstyled mt-3 mb-4">
-                    <li>Author: {{ book.author }}</li>
-                    <li>Score: {{ book.score }} </li>
-                    <li>User: {{ book.user.username }}</li>
+                    <li>{% trans "Author" %}: {{ book.author }}</li>
+                    <li>{% trans "Score" %}: {{ book.score }} </li>
+                    <li>{% trans "User" %}: {{ book.user.username }}</li>
                     <li>
                         <p>
                             {{ book.description|truncatewords:10 }}
-                            <a href="#">Читать полностью --></a>
+                            <a href="#">{% trans "Read" %} --></a>
                         </p>
                     </li>
                 </ul>
@@ -53,13 +56,13 @@
                                 <div class="card-body" style="width: 20rem">
                                     <h1 class="card-title pricing-card-title">${book.title}</h1>
                                     <ul class="list-unstyled mt-3 mb-4">
-                                        <li>Author: ${book.author}</li>
-                                        <li>Score: ${book.score}</li>
-                                        <li>User: ${book.user__username}</li>
+                                        <li>{% trans "Author" %}: ${book.author}</li>
+                                        <li>{% trans "Score" %}: ${book.score}</li>
+                                        <li>{% trans "User" %}: ${book.user__username}</li>
                                         <li>
                                             <p>
                                                 ${book.description.substring(0, 100)}...
-                                                <a href="#">Читать полностью --></a>
+                                                <a href="#">{% trans "Read" %} --></a>
                                             </p>
                                         </li>
                                     </ul>
