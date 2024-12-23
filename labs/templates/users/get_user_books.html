@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+<div class="col-md-7 col-lg-8 mx-auto">
+    <h4 class="mb-3">{{ username }}</h4>
+    <div class="d-flex flex-column">
+        {% for book in books %}
+            <div class="card mb-6 rounded-3 shadow-sm border-primary" style="margin-bottom: 16px;">
+                <div class="card-body" style="width: 20rem">
+                    <h1 class="card-title pricing-card-title">{{ book.title }}</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Author: {{ book.author }}</li>
+                        <li>Score: {{ book.score }} </li>
+                        <li>User: {{ book.user.username }}</li>
+                        <li>
+                            <p>
+                                {{ book.description|truncatewords:10 }}
+                                <a href="#">Читать полностью --></a>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

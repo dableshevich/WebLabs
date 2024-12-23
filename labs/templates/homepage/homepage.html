@@ -5,5 +5,75 @@
 {% endblock title %}
 
 {% block content %}
+<select id="user-filter" style="margin-bottom: 16px">
+    <option value="">All users</option>
+    {% for user in users %}
+        <option value="{{ user.id }}">{{ user.username }}</option>
+    {% endfor %}
+</select>
 
+<div class="d-flex flex-column" id="book-list">
+    {% for book in books %}
+        <div class="card mb-6 rounded-3 shadow-sm border-primary" style="margin-bottom: 16px;">
+            <div class="card-body" style="width: 20rem">
+                <h1 class="card-title pricing-card-title">{{ book.title }}</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Author: {{ book.author }}</li>
+                    <li>Score: {{ book.score }} </li>
+                    <li>User: {{ book.user.username }}</li>
+                    <li>
+                        <p>
+                            {{ book.description|truncatewords:10 }}
+                            <a href="#">Читать полностью --></a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+    
+<script>
+    $(document).ready(function(){
+        $('#user-filter').change(function(){
+            var selectedUser = $(this).val();
+    
+            $.ajax({
+                url: '{% url "get_books" %}',
+                method: 'GET',
+                data: {
+                    'user_id': selectedUser
+                },
+                success: function(data) {
+                    $('#book-list').empty();
+                    
+                    data.books.forEach(function(book) {
+                        var bookCard = `
+                            <div class="card mb-6 rounded-3 shadow-sm border-primary" style="margin-bottom: 16px;">
+                                <div class="card-body" style="width: 20rem">
+                                    <h1 class="card-title pricing-card-title">${book.title}</h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>Author: ${book.author}</li>
+                                        <li>Score: ${book.score}</li>
+                                        <li>User: ${book.user__username}</li>
+                                        <li>
+                                            <p>
+                                                ${book.description.substring(0, 100)}...
+                                                <a href="#">Читать полностью --></a>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>`;
+                        
+                        $('#book-list').append(bookCard);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+    });
+</script>
 {% endblock content %}

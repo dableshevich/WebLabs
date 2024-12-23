@@ -6,10 +6,13 @@ def set_info(request):
     template = 'userColor/set_info.html'
 
     if request.method == 'POST':
-        username = request.POST['username'],
+        username = request.POST['username']
         color = request.POST['color']
 
-        if 'visit_count' in request.session:
+        if (
+            'visit_count' in request.session and
+            request.COOKIES.get('username', 'unknown') == username
+        ):
             request.session['visit_count'] += 1
             
         else:

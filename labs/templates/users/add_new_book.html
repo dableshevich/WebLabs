@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+<div class="col-md-7 col-lg-8 mx-auto">
+    <h4 class="mb-3">Add new book</h4>
+    <form class="needs-validation" novalidate="" method="post">
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" id="title" placeholder="" value="" required="">
+        </div>
+
+        <div class="col-sm-6">
+          <label for="author" class="form-label">Author</label>
+          <input type="text" class="form-control" name="author" id="author" placeholder="" value="" required="">
+        </div>
+      </div>
+        <div class="col-12">
+          <label for="score" class="form-label">Score</label>
+          <input type="number" class="form-control" step="0.1" min="0" max="5" name="score" id="score" required="">
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="form-label">Descrition</label>
+          <input type="text" class="form-control" name="description" id="description" placeholder="">
+        </div>
+
+      <hr class="my-4">
+
+      <button class="w-100 btn btn-primary btn-lg" type="submit">Add book</button>
+
+    </form>
+  </div>
+{% endblock content %}
